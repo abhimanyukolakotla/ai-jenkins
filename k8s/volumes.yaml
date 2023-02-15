@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: aidebugops-volume
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  hostPath:
+    path: "/Users/abhimanyukolakotla/Documents/jenkins/pv"
+  
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: aidebugops-pvc
+spec:
+  resources:
+    requests:
+      storage: 500m
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce

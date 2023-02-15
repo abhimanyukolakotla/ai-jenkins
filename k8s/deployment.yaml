@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aidebugops-jenkins
+spec:
+  selector:
+    matchLabels:
+      app: aidebugops-jenkins
+  template:
+    metadata:
+      labels:
+        app: aidebugops-jenkins
+    spec:
+      volumes:
+        - name: aidebugops-pvc
+          persistentVolumeClaim:
+            claimName: aidebugops-pvc
+      containers:
+      - name: aidebugops-jenkins
+        image: aidebugops-jenkins
+        imagePullPolicy: Never
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - name: http-port
+          containerPort: 8080
+        - name: jnlp-port
+          containerPort: 50000
+        volumeMounts:
+          - name: "aidebugops-pvc" # name of volume
+            mountPath: "/var/jenkins_home"
+        
+        
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aidebugops-backend
+spec:
+  selector:
+    matchLabels:
+      app: aidebugops-backend 
+  template:
+    metadata:
+      labels:
+        app: aidebugops-backend 
+    spec:
+      containers:
+      - name: aidebugops-backend
+        image: aidebugops-backend
+        imagePullPolicy: Never
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
+
