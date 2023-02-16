@@ -1,0 +1,25 @@
+---
+# tasks file for fetch-logs
+
+- name: Run logs
+  shell: "ls -l {{ src_logs_dir }}/*.tar"
+  register: output
+
+- name: Get all tar files
+  find:
+    paths: "{{ src_logs_dir }}"
+    patterns: "*.tar"
+    recurse: no
+    # use_regex: True
+  register: found_tar_files
+
+- name: Get the logs
+  fetch:
+    src: "{{ item.path }}"
+    dest: "{{ dest_logs_dir }}/{{ item.path | basename}}"
+    flat: yes
+  loop: "{{ found_tar_files.files }}"
+
+#- name: Delete files
+#  shell: "rm -rf '{{ item.path }}'"
+#  loop: "{{ found_tar_files.files }}"

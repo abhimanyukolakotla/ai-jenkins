@@ -1,0 +1,5 @@
+
+- name: Download logs from Cognos content managers, dispatchers, and berlin services servers
+  hosts: localhost
+  roles:
+    - fetch-logs
