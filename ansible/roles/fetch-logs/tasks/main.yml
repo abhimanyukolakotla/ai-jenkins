@@ -21,8 +21,12 @@
   become: yes
   loop: "{{ found_tar_files.files }}"
 
+#- name: Compress files
+#  shell: "tar cvf {{ dest_logs_dir }}/logs.tar {{ dest_logs_dir }}/*.log"
 - name: Compress files
-  shell: "tar cvf {{ dest_logs_dir }}/logs.tar {{ dest_logs_dir }}/*.log"
+  archive:
+    path: {{ dest_logs_dir }}
+    format: zip
 #- name: Delete files
 #  shell: "rm -rf '{{ item.path }}'"
 #  loop: "{{ found_tar_files.files }}"
