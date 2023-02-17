@@ -25,7 +25,7 @@
 #  shell: "tar cvf {{ dest_logs_dir }}/logs.tar {{ dest_logs_dir }}/*.log"
 - name: Compress files
   archive:
-    path: {{ dest_logs_dir }}
+    path: "{{ dest_logs_dir }}"
     format: zip
 #- name: Delete files
 #  shell: "rm -rf '{{ item.path }}'"
