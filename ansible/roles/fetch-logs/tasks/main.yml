@@ -2,13 +2,13 @@
 # tasks file for fetch-logs
 
 - name: Run logs
-  shell: "ls -l {{ src_logs_dir }}/*.tar"
+  shell: "ls -l {{ src_logs_dir }}/*.log"
   register: output
 
 - name: Get all tar files
   find:
     paths: "{{ src_logs_dir }}"
-    patterns: "*.tar"
+    patterns: "*.log"
     recurse: no
     # use_regex: True
   register: found_tar_files
