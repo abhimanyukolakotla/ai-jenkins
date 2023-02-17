@@ -22,7 +22,7 @@
   loop: "{{ found_tar_files.files }}"
 
 - name: Compress files
-  shell: "tar cvf {{ dest_logs_dir }}/logs.tar {{ dest_logs_dir }}/*.log"
+  shell: "tar cvf {{ dest_logs_dir }}/logs.tar -C {{ dest_logs_dir }} ."
 
 #- name: Compress files
 #  archive:
@@ -30,7 +30,7 @@
 #    dest: "{{ dest_logs_dir }}.zip"
 #    force_archive: True
 #    format: zip
-- name: Copy to workspace
+- name: Copy to workspacel
   shell: "cp {{ dest_logs_dir }}/logs.tar {{ src_logs_dir }}/workspace/fetch-logs"
 #- name: Delete files
 #  shell: "rm -rf '{{ item.path }}'"
