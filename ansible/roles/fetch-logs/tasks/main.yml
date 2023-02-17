@@ -26,6 +26,7 @@
 - name: Compress files
   archive:
     path: "{{ dest_logs_dir }}"
+    dest: "{{ dest_logs_dir }}"
     format: zip
 #- name: Delete files
 #  shell: "rm -rf '{{ item.path }}'"
