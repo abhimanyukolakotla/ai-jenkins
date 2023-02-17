@@ -13,14 +13,14 @@
 #    path: "/Users/abhimanyukolakotla/Documents/jenkins/pv"
   
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: aidebugops-pvc
-spec:
-  resources:
-    requests:
-      storage: 500m
+#apiVersion: v1
+#kind: PersistentVolumeClaim
+#metadata:
+#  name: aidebugops-pvc
+#spec:
+#  resources:
+#    requests:
+#      storage: 500m
   #volumeMode: Filesystem
-  accessModes:
-    - ReadWriteOnce
+#  accessModes:
+#    - ReadWriteOnce

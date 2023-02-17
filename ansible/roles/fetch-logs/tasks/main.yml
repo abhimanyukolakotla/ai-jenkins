@@ -5,7 +5,7 @@
   shell: "ls -l {{ src_logs_dir }}/*.log"
   register: output
 
-- name: Get all tar files
+- name: Get all log files
   find:
     paths: "{{ src_logs_dir }}"
     patterns: "*.log"
@@ -21,6 +21,8 @@
   become: yes
   loop: "{{ found_tar_files.files }}"
 
+- name: Compress files
+  shell: "tar cvf {{ dest_logs_dir }}/logs.tar *.log"
 #- name: Delete files
 #  shell: "rm -rf '{{ item.path }}'"
 #  loop: "{{ found_tar_files.files }}"
