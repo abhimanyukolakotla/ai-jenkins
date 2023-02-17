@@ -21,16 +21,17 @@
   become: yes
   loop: "{{ found_tar_files.files }}"
 
-#- name: Compress files
-#  shell: "tar cvf {{ dest_logs_dir }}/logs.tar {{ dest_logs_dir }}/*.log"
 - name: Compress files
-  archive:
-    path: "{{ dest_logs_dir }}"
-    dest: "{{ dest_logs_dir }}.zip"
-    force_archive: True
-    format: zip
+  shell: "tar cvf {{ dest_logs_dir }}/logs.tar {{ dest_logs_dir }}/*.log"
+
+#- name: Compress files
+#  archive:
+#    path: "{{ dest_logs_dir }}"
+#    dest: "{{ dest_logs_dir }}.zip"
+#    force_archive: True
+#    format: zip
 - name: Copy to workspace
-  shell: "cp {{ dest_logs_dir }}.zip {{ src_logs_dir }}/workspace/fetch-logs"
+  shell: "cp {{ dest_logs_dir }}.tar {{ src_logs_dir }}/workspace/fetch-logs"
 #- name: Delete files
 #  shell: "rm -rf '{{ item.path }}'"
 #  loop: "{{ found_tar_files.files }}"
