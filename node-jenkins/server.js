@@ -7,7 +7,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', async (req, res) => {
-    res.json({ message: 'ok' });
+    res.json({ message: 'ok, we have got response from backend' });
 });
 
 app.use('/v1', router);

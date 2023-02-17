@@ -18,6 +18,7 @@
     src: "{{ item.path }}"
     dest: "{{ dest_logs_dir }}/{{ item.path | basename}}"
     flat: yes
+  become: yes
   loop: "{{ found_tar_files.files }}"
 
 #- name: Delete files

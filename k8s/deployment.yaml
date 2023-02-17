@@ -11,18 +11,21 @@ spec:
       labels:
         app: aidebugops-jenkins
     spec:
+      securityContext:
+          fsGroup: 1000 
+          runAsUser: 0
       volumes:
         - name: aidebugops-pvc
           persistentVolumeClaim:
             claimName: aidebugops-pvc
       containers:
       - name: aidebugops-jenkins
-        image: aidebugops-jenkins
-        imagePullPolicy: Never
-        resources:
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
+        image: registry.digitalocean.com/docr-dailybhajans-registry/aidebugops-jenkins
+        imagePullPolicy: Always
+        #resources:
+        #  limits:
+        #    memory: "256Mi"
+        #    cpu: "500m"
         ports:
         - name: http-port
           containerPort: 8080
@@ -50,8 +53,8 @@ spec:
     spec:
       containers:
       - name: aidebugops-backend
-        image: aidebugops-backend
-        imagePullPolicy: Never
+        image: registry.digitalocean.com/docr-dailybhajans-registry/aidebugops-backend
+        imagePullPolicy: Always
         resources:
           limits:
             memory: "256Mi"
@@ -59,3 +62,27 @@ spec:
         ports:
         - containerPort: 3000
 
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aidebugops-chatbot
+spec:
+  selector:
+    matchLabels:
+      app: aidebugops-chatbot
+  template:
+    metadata:
+      labels:
+        app: aidebugops-chatbot
+    spec:
+      containers:
+      - name: aidebugops-chatbot
+        image: registry.digitalocean.com/docr-dailybhajans-registry/aidebugops-chatbot
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
