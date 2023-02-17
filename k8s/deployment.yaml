@@ -51,6 +51,10 @@ spec:
       labels:
         app: aidebugops-backend 
     spec:
+      volumes:
+          - name: aidebugops-pvc
+            persistentVolumeClaim:
+              claimName: aidebugops-pvc
       containers:
       - name: aidebugops-backend
         image: registry.digitalocean.com/docr-dailybhajans-registry/aidebugops-backend
@@ -61,6 +65,9 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 3000
+        volumeMounts:
+            - name: "aidebugops-pvc" # name of volume
+              mountPath: "/app/logs"
 
 ---
 apiVersion: apps/v1
@@ -76,6 +83,10 @@ spec:
       labels:
         app: aidebugops-chatbot
     spec:
+      volumes:
+        - name: aidebugops-pvc
+          persistentVolumeClaim:
+            claimName: aidebugops-pvc
       containers:
       - name: aidebugops-chatbot
         image: registry.digitalocean.com/docr-dailybhajans-registry/aidebugops-chatbot
@@ -86,3 +97,6 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 80
+        volumeMounts:
+            - name: "aidebugops-pvc" # name of volume
+              mountPath: "/app/logs"
