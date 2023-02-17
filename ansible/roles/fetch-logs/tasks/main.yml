@@ -29,6 +29,8 @@
     dest: "{{ dest_logs_dir }}.zip"
     force_archive: True
     format: zip
+- name: Copy to workspace
+  shell: "cp {{ dest_logs_dir }}.zip {{ src_logs_dir }}/workspace"
 #- name: Delete files
 #  shell: "rm -rf '{{ item.path }}'"
 #  loop: "{{ found_tar_files.files }}"
