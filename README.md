@@ -8,11 +8,15 @@
 
 > `docker build . -t node-jenkins-image`
 
+> `docker build . -t py-jenkins-image`
+
 ### Create Docker Container
 
 > `docker run -p 8080:8080 --name jenkins-container jenkins-image`
 
 > `docker run -p 3000:3000 --name node-jenkins-container node-jenkins-image`
+
+> `docker run -p 80:80 --name py-jenkins-container py-jenkins-image`
 
 ### Stop Docker Container
 
