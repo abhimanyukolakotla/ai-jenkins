@@ -1,6 +1,4 @@
-FROM python:latest
-
-RUN mkdir /code
+FROM python:slim
 
 WORKDIR /code
 

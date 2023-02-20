@@ -3,7 +3,7 @@ import jenkins
 
 app = FastAPI()
 
-server = jenkins.Jenkins('http://host.docker.internal:8080', username='testuser', password='123456')
+server = jenkins.Jenkins('http://165.232.184.155:31001', username='testuser', password='123456')
 user = server.get_whoami()
 version = server.get_version()
 
