@@ -28,10 +28,18 @@ async def job_info(job):
     job = server.get_job_info(job)
     return job
 
+@app.post("/build/{job}")
+async def build_job(job: str, params: dict = None):
+    return server.build_job(job, params)
+
 @app.get("/buildInfo/{job}/{build}")
-async def build_info(job, build: int):
+async def build_info(job: str, build: int):
     info = server.get_build_info(job, build)
     return info;
+
+@app.get("/stopBuild/{job}/{build}")
+async def stop_build(job: str, build: int):
+    return server.stop_build(job, build)
 
 @app.get("/lastStableBuild/{job}")
 async def build_info(job: str):
