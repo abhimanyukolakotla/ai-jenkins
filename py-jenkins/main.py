@@ -8,13 +8,8 @@ load_dotenv()  # take environment variables from .env.
 
 app = FastAPI()
 
-<<<<<<< HEAD
-server = jenkins.Jenkins('http://165.232.184.155:31001', username='testuser', password='123456')
-=======
 url = os.environ.get('JENKINS_URL')
-
 server = jenkins.Jenkins(url, username=os.environ.get('USER_NAME'), password=os.environ.get('PASSWORD'))
->>>>>>> 1b816a8e156da56c9465d7e4e13409decfe417e2
 user = server.get_whoami()
 version = server.get_version()
 
