@@ -16,7 +16,7 @@
 
 > `docker run -p 3000:3000 --name node-jenkins-container node-jenkins-image`
 
-> `docker run -p 80:80 --name py-jenkins-container py-jenkins-image`
+> `docker run -p 31004:31004 --name py-jenkins-container py-jenkins-image`
 
 ### Stop Docker Container
 
